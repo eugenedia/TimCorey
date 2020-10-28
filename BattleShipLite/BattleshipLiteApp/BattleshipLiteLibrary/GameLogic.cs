@@ -51,5 +51,10 @@ namespace BattleshipLiteLibrary
 
            
         }
+
+        public static bool PlaceShip(PlayerInfoModel model, string location)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

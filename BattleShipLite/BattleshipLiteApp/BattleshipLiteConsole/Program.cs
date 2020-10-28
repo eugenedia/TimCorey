@@ -13,7 +13,8 @@ namespace BattleshipLiteConsole
         static void Main(string[] args)
         {
             WelcomeMessage();
-            
+            PlayerInfoModel player1 = CreatePlayer("Player 1");
+            PlayerInfoModel player2 = CreatePlayer("Player 2");
             
             Console.ReadLine();
         }
@@ -25,16 +26,22 @@ namespace BattleshipLiteConsole
             Console.WriteLine();
         }
 
-        private static PlayerInfoModel CreatePlayer()
+        private static PlayerInfoModel CreatePlayer(string playerTitle)
         {
             PlayerInfoModel output = new PlayerInfoModel();
+
+            Console.WriteLine($"Player information for { playerTitle }");
 
             // Ask the user for their name
             output.UsersName = AskForUsersName();
             // Load up the shot grid
             GameLogic.InitializeGrid(output);
             // Ask the user for their 5 ships placements
+            PlaceShips(output);
             // Clear
+            Console.Clear();
+
+            return output;
         }
 
         void ClearDisplay()
@@ -49,10 +56,22 @@ namespace BattleshipLiteConsole
 
             return output;
         }
-
-        private static void PlaceShips()
+                
+        private static void PlaceShips(PlayerInfoModel model)
         {
+            do
+            {
+                Console.Write($"Where do you want to place your next ship number { model.ShipLocations.Count + 1 }: ");
+                string location = Console.ReadLine();
 
+                bool isValidLocation = GameLogic.PlaceShip(model, location);
+
+                if (isValidLocation == false )
+                {
+                    Console.WriteLine("This was not valid location. Please try again.");
+                }
+
+            } while (model.ShipLocations.Count < 5);
         }
 
         bool IsValidSpotForShip()
