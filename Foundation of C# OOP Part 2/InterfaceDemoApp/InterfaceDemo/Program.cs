@@ -18,54 +18,38 @@ namespace InterfaceDemo
 
             Keyboard keyboard = new Keyboard();
             GameController gameController = new GameController();
+            BatteryPoweredGameController battery = new BatteryPoweredGameController();
+            BatteryPoweredkeyboard batteryKeyboard = new BatteryPoweredkeyboard();
 
             controllers.Add(keyboard);
             controllers.Add(gameController);
+            controllers.Add(battery);
 
-            foreach(IComputerController controller in controllers)
+            foreach (IComputerController controller in controllers)
             {
-                controller.
+                if (controller is GameController gc)
+                {
+
+                }
+
+                if (controller is IBatteryPowered powered)
+                {
+                    int batteryLevel = powered.BatteryLevel;
+
+                }
             }
 
+            using (GameController gc = new GameController())
+            {
 
-            
+            }
+
+            List <IBatteryPowered> powereds = new List<IBatteryPowered>();
+
+            powereds.Add(battery);
+            powereds.Add(batteryKeyboard);
+
             Console.ReadLine();
         }
-    }
-
-    public interface IComputerController
-    {
-        void Connect();
-        void CurrentKeyPressed();
-
-    }
-
-
-    public class Keyboard : IComputerController
-    {
-        public void Connect()
-        {
-
-        }
-
-        public void CurrentKeyPressed()
-        {
-
-        }
-
-        public string ConnectionType { get; set; }
-    }
-
-    public class GameController : IComputerController
-    {
-        public void Connect()
-        {
-        }
-
-        public void CurrentKeyPressed()
-        {
-        }
-
-        public int BatteryLevel { get; set; }
     }
 }

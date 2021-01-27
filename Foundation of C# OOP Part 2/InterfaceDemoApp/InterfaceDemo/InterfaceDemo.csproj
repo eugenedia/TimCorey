@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatteryPoweredGameController.cs" />
+    <Compile Include="BatteryPoweredkeyboard.cs" />
+    <Compile Include="GameController.cs" />
+    <Compile Include="IBatteryPowered.cs" />
+    <Compile Include="IComputerController.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
